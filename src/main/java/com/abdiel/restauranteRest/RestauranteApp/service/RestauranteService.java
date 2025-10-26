@@ -5,10 +5,12 @@ import com.abdiel.restauranteRest.RestauranteApp.dtos.response.RestauranteDTO;
 import com.abdiel.restauranteRest.RestauranteApp.entities.Restaurante;
 import com.abdiel.restauranteRest.RestauranteApp.mapper.RestauranteMapper;
 import com.abdiel.restauranteRest.RestauranteApp.repository.RestauranteRepository;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class RestauranteService {
@@ -30,9 +32,9 @@ public class RestauranteService {
 
     public List<RestauranteDTO> salvarPedidos(List<CadastrarPedidoDTO> dtoList) {
         List<Restaurante> pedidos = restauranteMapper.toEntityList(dtoList);
-        
+
         List<Restaurante> pedidosCadastrados = restauranteRepository.saveAll(pedidos);
-        
+
         return restauranteMapper.converteLista(pedidosCadastrados);
     }
 

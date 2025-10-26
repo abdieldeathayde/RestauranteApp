@@ -39,6 +39,4 @@ public class RestauranteController {
         List<RestauranteDTO> pedidosCadastrados = restauranteService.salvarPedidos(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(pedidosCadastrados);
     }
-
-
 }
