@@ -26,11 +26,13 @@ public class RestauranteService {
         this.restauranteValidador = restauranteValidador;
     }
 
-    public Restaurante salvarRestaurante(Restaurante restaurante) {
-        return restauranteRepository.save(restaurante);
+    public RestauranteDTO salvarRestaurante(CadastrarPedidoDTO dto) {
+        Restaurante restaurante = restauranteMapper.toEntity(dto);
+        restauranteRepository.save(restaurante);
+        return restauranteMapper.toDto(restaurante);
     }
 
-    public Optional<Restaurante> buscarPorNome(String nome) {
+    public Optional<RestauranteDTO> buscarPorNome(String nome) {
         return restauranteRepository.findByNome(nome);
     }
 

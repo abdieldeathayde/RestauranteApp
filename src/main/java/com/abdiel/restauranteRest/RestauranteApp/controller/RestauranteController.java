@@ -8,14 +8,11 @@ import com.abdiel.restauranteRest.RestauranteApp.service.RestauranteService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
 @RequestMapping(value = "cardapio")
@@ -28,13 +25,15 @@ public class RestauranteController {
     }
 
     @PostMapping
-    public ResponseEntity<Restaurante> cadastrarRestaurante(@RequestBody Restaurante restaurante) {
-        Restaurante novoRestaurante = restauranteService.salvarRestaurante(restaurante);
+    public ResponseEntity<RestauranteDTO> cadastrarRestaurante(
+            @RequestBody CadastrarPedidoDTO dto
+    ) {
+        RestauranteDTO novoRestaurante = restauranteService.salvarRestaurante(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoRestaurante);
     }
 
     @GetMapping("/buscar")
-    public ResponseEntity<Restaurante> buscarPorNome(@RequestBody String nome) {
+    public ResponseEntity<RestauranteDTO> buscarPorNome(@RequestParam String nome) {
         return restauranteService.buscarPorNome(nome)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
