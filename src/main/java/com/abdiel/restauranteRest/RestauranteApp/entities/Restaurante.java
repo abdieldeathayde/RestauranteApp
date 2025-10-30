@@ -17,7 +17,13 @@ public class Restaurante {
 
     private String nome;
     private String pedido;
-    private int mesa;
+    private double valor;
+    private long mesa;
     private LocalDateTime dataPedido = LocalDateTime.now();
 
+    public Restaurante(long mesa, String pedido, double valor) {
+        this.mesa = mesa;
+        this.pedido = pedido;
+        this.valor = valor;
+    }
 }

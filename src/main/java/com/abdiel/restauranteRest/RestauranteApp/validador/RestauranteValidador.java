@@ -2,6 +2,7 @@ package com.abdiel.restauranteRest.RestauranteApp.validador;
 
 import com.abdiel.restauranteRest.RestauranteApp.entities.Restaurante;
 import com.abdiel.restauranteRest.RestauranteApp.repository.RestauranteRepository;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,4 +21,7 @@ public class RestauranteValidador {
         return restauranteRepository.findByNome(restaurante).orElseThrow();
     }
 
+    public Restaurante validaSeIDPedidoExsiste(Integer id) {
+        return null;
+    }
 }
