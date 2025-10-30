@@ -5,6 +5,7 @@ import com.abdiel.restauranteRest.RestauranteApp.dtos.CadastrarPedidoDTO;
 import com.abdiel.restauranteRest.RestauranteApp.dtos.response.RestauranteDTO;
 import com.abdiel.restauranteRest.RestauranteApp.entities.Restaurante;
 import com.abdiel.restauranteRest.RestauranteApp.service.RestauranteService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -39,7 +40,8 @@ public class RestauranteController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/listar")
+    @GetMapping
+    @Operation(summary = "Listar todos os itens do menu")
     public List<Restaurante> listarMenu() {
         return restauranteService.listarItens();
     }
