@@ -52,14 +52,14 @@ public class RestauranteController {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deletarPedidoPorNome(
+    public ResponseEntity<String> deletarUsuarioPorNome(
             @RequestParam @NotBlank(message = "O campo nome é obrigatório.") String nome) {
         restauranteService.deletarUsuarioPorNome(nome);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Pedido deletado com sucesso.");
     }
 
     @PutMapping
-    public ResponseEntity<RestauranteDTO> atualizarUsuarioPorId(Integer id, AtualizaPedidoDTO dto) {
+    public ResponseEntity<RestauranteDTO> atualizarUsuarioPorId(@RequestParam  Integer id, @RequestBody @Valid AtualizaPedidoDTO dto) {
         RestauranteDTO restauranteDTO = restauranteService.atualizarPedidoPorId(id, dto);
         return ResponseEntity.ok(restauranteDTO);
     }
