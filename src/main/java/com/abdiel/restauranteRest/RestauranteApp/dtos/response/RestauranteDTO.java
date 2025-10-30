@@ -4,5 +4,6 @@ public record RestauranteDTO(
         Integer id,
         String nome,
         String pedido,
-        int mesa) {
+        int mesa,
+        int valor) {
 }

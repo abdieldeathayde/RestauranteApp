@@ -9,6 +9,8 @@ public record CadastrarPedidoDTO(
         @NotBlank(message = "O campo pedido é obrigatório")
         String pedido,
         @NotNull(message = "O campo mesa é obrigatório")
-        int mesa) {
+        int mesa,
+        @NotNull(message = "O campo valor é obrigatório")
+        int valor) {
 
 }
