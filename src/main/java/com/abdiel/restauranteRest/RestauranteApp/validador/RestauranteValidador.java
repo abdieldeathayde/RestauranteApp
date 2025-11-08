@@ -21,7 +21,7 @@ public class RestauranteValidador {
         return restauranteRepository.findByNome(restaurante).orElseThrow();
     }
 
-    public Restaurante validaSeIDPedidoExsiste(Integer id) {
+    public Restaurante validaSeIDPedidoExiste(Integer id) {
         return null;
     }
 }

@@ -4,27 +4,23 @@ import com.abdiel.restauranteRest.RestauranteApp.dtos.AtualizaPedidoDTO;
 import com.abdiel.restauranteRest.RestauranteApp.dtos.CadastrarPedidoDTO;
 import com.abdiel.restauranteRest.RestauranteApp.dtos.response.RestauranteDTO;
 import com.abdiel.restauranteRest.RestauranteApp.entities.Restaurante;
+import com.abdiel.restauranteRest.RestauranteApp.exception.BuscaPedidoException;
 import com.abdiel.restauranteRest.RestauranteApp.mapper.RestauranteMapper;
 import com.abdiel.restauranteRest.RestauranteApp.repository.RestauranteRepository;
 import com.abdiel.restauranteRest.RestauranteApp.validador.RestauranteValidador;
-import jakarta.validation.constraints.NotBlank;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-
+@RequiredArgsConstructor
 @Service
 public class RestauranteService {
-    private final RestauranteRepository restauranteRepository;
-    private final RestauranteValidador restauranteValidador;
-    private final RestauranteMapper restauranteMapper;
+    private RestauranteRepository restauranteRepository;
+    private RestauranteValidador restauranteValidador;
+    private RestauranteMapper restauranteMapper;
 
-    public RestauranteService(RestauranteRepository restauranteRepository, RestauranteValidador restauranteValidador, RestauranteMapper restauranteMapper) {
-        this.restauranteRepository = restauranteRepository;
-        this.restauranteMapper = restauranteMapper;
-        this.restauranteValidador = restauranteValidador;
-    }
 
     public RestauranteDTO salvarRestaurante(CadastrarPedidoDTO dto) {
         Restaurante restaurante = restauranteMapper.toEntity(dto);
@@ -32,8 +28,8 @@ public class RestauranteService {
         return restauranteMapper.toDto(restaurante);
     }
 
-    public Optional<RestauranteDTO> buscarPorNome(String nome) {
-        return restauranteRepository.findByNome(nome);
+    public RestauranteDTO buscarPorNome(String nome) {
+        return restauranteRepository.findByNome(nome).orElseThrow();
     }
 
     public List<RestauranteDTO> salvarPedidos(List<CadastrarPedidoDTO> dtoList) {
@@ -45,8 +41,8 @@ public class RestauranteService {
     }
 
 
-    public Optional<Restaurante> buscarPorPedido(String pedido) {
-        return restauranteRepository.findByPedido(pedido);
+    public Restaurante buscarPorPedido(String pedido) {
+        return restauranteRepository.findByPedido(pedido).orElseThrow();
     }
 
     public List<Restaurante> listarItens() {
@@ -69,7 +65,7 @@ public class RestauranteService {
         return restauranteMapper.toDto(restaurante);
     }
 
-    public void deletarUsuarioPorNome(@NotBlank(message = "O campo nome é obrigatório.") String nome) {
+    public void deletarUsuarioPorNome(String nome) {
         Restaurante restaurante = restauranteValidador.buscaPedidoRestaurante(nome);
         restauranteRepository.delete(restaurante);
     }
