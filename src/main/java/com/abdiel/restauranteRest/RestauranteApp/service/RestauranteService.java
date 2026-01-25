@@ -59,7 +59,7 @@ public class RestauranteService {
     }
 
     public RestauranteDTO atualizarPedidoPorId(Integer id, AtualizaPedidoDTO dto) {
-        Restaurante restaurante = restauranteValidador.validaSeIDPedidoExsiste(id);
+        Restaurante restaurante = restauranteValidador.validaSeIDPedidoExiste(id);
         restauranteMapper.atualizaDto(dto, restaurante);
         restauranteRepository.save(restaurante);
         return restauranteMapper.toDto(restaurante);

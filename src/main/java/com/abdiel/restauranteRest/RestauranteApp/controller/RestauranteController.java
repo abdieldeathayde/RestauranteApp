@@ -5,7 +5,7 @@ import com.abdiel.restauranteRest.RestauranteApp.dtos.CadastrarPedidoDTO;
 import com.abdiel.restauranteRest.RestauranteApp.dtos.response.RestauranteDTO;
 import com.abdiel.restauranteRest.RestauranteApp.entities.Restaurante;
 import com.abdiel.restauranteRest.RestauranteApp.service.RestauranteService;
-import io.swagger.v3.oas.annotations.Operation;
+//import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.HttpStatus;
@@ -34,13 +34,12 @@ public class RestauranteController {
 
     @GetMapping("/buscar")
     public ResponseEntity<RestauranteDTO> buscarPorNome(@RequestParam String nome) {
-        return restauranteService.buscarPorNome(nome)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        RestauranteDTO result = restauranteService.buscarPorNome(nome);
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping
-    @Operation(summary = "Listar todos os itens do menu")
+//    @Operation(summary = "Listar todos os itens do menu")
     public List<Restaurante> listarMenu() {
         return restauranteService.listarItens();
     }
