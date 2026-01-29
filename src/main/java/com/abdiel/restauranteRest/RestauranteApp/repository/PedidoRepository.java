@@ -8,5 +8,6 @@ import java.util.Optional;
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
     Pedido findByCodigo(Long codigo);
+    void deleteByCodigo(Long codigo);
 }
 

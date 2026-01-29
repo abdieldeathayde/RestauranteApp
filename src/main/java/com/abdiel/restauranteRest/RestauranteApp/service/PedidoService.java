@@ -5,11 +5,13 @@ import com.abdiel.restauranteRest.RestauranteApp.dtos.response.PedidoDTO;
 import com.abdiel.restauranteRest.RestauranteApp.entities.Pedido;
 import com.abdiel.restauranteRest.RestauranteApp.mapper.PedidoMapper;
 import com.abdiel.restauranteRest.RestauranteApp.repository.PedidoRepository;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -30,9 +32,24 @@ public class PedidoService {
         return pedidoMapper.toDto(result);
     }
 
+    public List<PedidoDTO> cadastrarPedidos(List<CriarPedidoDTO> dtoList) {
+        List<Pedido> pedidos = pedidoMapper.toEntityList(dtoList);
+
+        List<Pedido> pedidosSalvos = pedidoRepository.saveAll(pedidos);
+
+        return pedidoMapper.converteList(pedidosSalvos);
+
+    }
+
     public PedidoDTO buscaPedido(Long codigo) {
         Pedido result = pedidoRepository.findByCodigo(codigo);
         return pedidoMapper.toDto(result);
     }
+
+    @Transactional
+    public void deletarPedido(Long codigo) {
+        pedidoRepository.deleteByCodigo(codigo);
+    }
+
 
 }
