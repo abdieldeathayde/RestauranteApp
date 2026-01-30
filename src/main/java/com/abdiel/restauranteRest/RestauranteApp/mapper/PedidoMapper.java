@@ -6,7 +6,6 @@ import com.abdiel.restauranteRest.RestauranteApp.entities.Pedido;
 import org.mapstruct.Mapper;
 
 import java.util.List;
-import java.util.Optional;
 
 @Mapper(componentModel = "spring")
 public interface PedidoMapper {
@@ -18,4 +17,6 @@ public interface PedidoMapper {
     List<Pedido> toEntityList(List<CriarPedidoDTO> dtoList);
 
     List<PedidoDTO> converteList(List<Pedido> pedidosSalvos);
+
+    List<PedidoDTO> converteListas(List<PedidoDTO> pedidos);
 }

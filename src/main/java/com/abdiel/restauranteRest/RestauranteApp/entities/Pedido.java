@@ -16,7 +16,10 @@ public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codigo; // ÚNICO identificador
+    private Long id;
+
+    @Column(nullable = false)
+    private Long codigo;
 
     @Column(nullable = false)
     private String nome;
@@ -27,8 +30,8 @@ public class Pedido {
     @Column(nullable = false)
     private LocalDateTime data;
 
-    @PrePersist
-    public void prePersist() {
-        this.data = LocalDateTime.now();
-    }
+//    @PrePersist
+//    public void prePersist() {
+//        this.data = LocalDateTime.now();
+//    }
 }

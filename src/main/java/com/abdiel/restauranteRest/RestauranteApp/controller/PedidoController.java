@@ -19,23 +19,16 @@ public class PedidoController {
     private final PedidoService pedidoService;
 
     @PostMapping
-    public ResponseEntity<PedidoDTO> criaPedido(@RequestBody @Valid CriarPedidoDTO pedido) {
+    public ResponseEntity<PedidoDTO> criaPedido(@RequestBody CriarPedidoDTO pedido) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(pedidoService.criarPedido(pedido));
     }
 
-    @PostMapping("/lote")
-    public ResponseEntity<List<PedidoDTO>> cadastrarPedidos(
-            @RequestBody @Valid List<CriarPedidoDTO> dto) {
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(pedidoService.cadastrarPedidos(dto));
-    }
-
     @GetMapping("/{codigo}")
-    public ResponseEntity<PedidoDTO> buscaPedido(@PathVariable Long codigo) {
-        return ResponseEntity.ok(pedidoService.buscaPedido(codigo));
+    public ResponseEntity<List<PedidoDTO>> buscaPedido(@PathVariable Long codigo) {
+        List<PedidoDTO> listapedido = pedidoService.listaPedidos(codigo);
+        return ResponseEntity.ok(listapedido);
     }
 
     @DeleteMapping("/{codigo}")
