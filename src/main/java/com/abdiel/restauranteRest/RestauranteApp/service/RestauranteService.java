@@ -4,7 +4,6 @@ import com.abdiel.restauranteRest.RestauranteApp.dtos.AtualizaPedidoDTO;
 import com.abdiel.restauranteRest.RestauranteApp.dtos.CadastrarPedidoDTO;
 import com.abdiel.restauranteRest.RestauranteApp.dtos.response.RestauranteDTO;
 import com.abdiel.restauranteRest.RestauranteApp.entities.Restaurante;
-import com.abdiel.restauranteRest.RestauranteApp.exception.BuscaPedidoException;
 import com.abdiel.restauranteRest.RestauranteApp.mapper.RestauranteMapper;
 import com.abdiel.restauranteRest.RestauranteApp.repository.RestauranteRepository;
 import com.abdiel.restauranteRest.RestauranteApp.validador.RestauranteValidador;
@@ -12,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service

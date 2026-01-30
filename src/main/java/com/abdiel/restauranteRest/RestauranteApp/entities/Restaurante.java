@@ -2,6 +2,7 @@ package com.abdiel.restauranteRest.RestauranteApp.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Table(name = "usuarios")
 @Data
 @Entity
+@NoArgsConstructor
 public class Restaurante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
