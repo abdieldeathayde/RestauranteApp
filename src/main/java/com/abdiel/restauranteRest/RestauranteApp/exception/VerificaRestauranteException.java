@@ -1,10 +1,10 @@
 package com.abdiel.restauranteRest.RestauranteApp.exception;
 
-public class RestauranteNaoEncontrado {
+public class VerificaRestauranteException extends RuntimeException {
 
     private static final String RESTAURANTE = "Restaurante não encontrado";
 
-    public RestauranteNaoEncontrado() {
-        super();
+    public VerificaRestauranteException() {
+        super(RESTAURANTE);
     }
 }

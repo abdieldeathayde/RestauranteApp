@@ -7,7 +7,18 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ReservaRepository extends JpaRepository<Reserva, Long> {
+
+
     void deleteByCodigo(Long codigo);
-    List<ReservaDTO> findByCodigo(Long codigo);
+
+    List<Reserva> findByCodigo(Long codigo);
+
+    boolean existsByCodigo(Long codigo);
+
+    boolean findByCPF(String cpf);
+
+    boolean existsByCpf(String cpf);
+
+//    boolean validaCpf(String cpf);
 }
 

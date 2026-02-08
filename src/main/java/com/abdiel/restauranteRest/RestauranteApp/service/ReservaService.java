@@ -6,6 +6,7 @@ import com.abdiel.restauranteRest.RestauranteApp.entities.Reserva;
 import com.abdiel.restauranteRest.RestauranteApp.entities.ReservaStatus;
 import com.abdiel.restauranteRest.RestauranteApp.mapper.ReservaMapper;
 import com.abdiel.restauranteRest.RestauranteApp.repository.ReservaRepository;
+import com.abdiel.restauranteRest.RestauranteApp.validador.ReservaValidador;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,9 @@ import java.util.List;
 public class ReservaService {
     private final ReservaRepository reservaRepository;
     private final ReservaMapper reservaMapper;
+    private final ReservaValidador reservaValidador;
     public ReservaDTO criarReserva(CriarReservaDTO reserva) {
+        reservaValidador.validaCPF(reserva.cpf());
         ReservaDTO reservaDTO = new ReservaDTO(
                 reserva.nome(),
                 reserva.cpf(),
@@ -38,7 +41,8 @@ public class ReservaService {
     }
 
     public List<ReservaDTO> listaReservas(Long codigo) {
-        List<ReservaDTO> reservas = reservaRepository.findByCodigo(codigo);
+        reservaValidador.existsByCodigo(codigo);
+        List<Reserva> reservas = reservaRepository.findByCodigo(codigo);
         return reservaMapper.converteListas(reservas);
     }
 }

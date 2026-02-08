@@ -1,10 +1,14 @@
 package com.abdiel.restauranteRest.RestauranteApp.exception;
 
-public class BuscaReservaException {
+public class BuscaReservaException extends RuntimeException {
 
-    private static final String BUSCA_PEDIDO = "PEDIDO NÃO ENCONTRADO";
+    private static final String BUSCA_PEDIDO = "RESERVA NÃO ENCONTRADA";
 
     public BuscaReservaException() {
-        super();
+        super(BUSCA_PEDIDO);
     }
+
+
+
+
 }
